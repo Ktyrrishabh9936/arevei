@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.shadowarevei{
+  box-shadow: 0px 4.8px 46.92px 0px rgba(155, 225, 63, 0.12);
+}
