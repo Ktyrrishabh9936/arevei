@@ -1,0 +1,18 @@
+import React from 'react'
+import Header from '../Dashboard/header'
+import UserProfile from '../Dashboard/userProfile'
+import ServiceCards from '../Dashboard/ServiceCards'
+export default function Homepage() {
+  return (
+    <>
+      <Header />
+        <section className=" space-y-10 text-center my-8 py-8">
+      <h1 className="text-[clamp(2.3rem,2.7vw,3rem)] font-bold">Welcome <span className="text-[rgba(155,225,63)]">Shiva!</span></h1>
+
+          <p className="text-lg text-[rgb(130,130,130)]  max-w-xl mx-auto">At Arevei, we Build Brand Identity that help you to save and create unique identity in the market.</p>
+        </section>
+        <UserProfile />
+        <ServiceCards />
+    </>
+  )
+}
