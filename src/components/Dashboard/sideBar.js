@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (
     <aside className="w-1/5 bg-[rgba(155,225,63,1)] flex flex-col items-center py-6 gap-y-8 h-screen sticky top-0">
       <div className="mb-8  flex items-center pt-16 max-h-[40%]">
-        <img src="img/ArevieLogo.png" alt="Arevei Logo" className=" h-20 md:h-40 xl:h-55 " />
+        <img src="/img/ArevieLogo.png" alt="Arevei Logo" className=" h-20 md:h-40 xl:h-55 " />
       </div>
       <nav className="space-y-6 h-full flex justify-center flex-col">
         <a href="/" className="flex items-center text-black">
