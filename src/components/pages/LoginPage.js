@@ -21,10 +21,10 @@ export default function LogInPage() {
                 
         }
   return (
-        <div className="flex  justify-center items-center min-h-[100vh] bg-[rgb(3,3,3)] text-[#fff] pt-2">
+        <div className="flex  justify-center items-center min-h-[100vh]  text-[#fff] pt-2" style={{backgroundColor:'rgb(3,3,3)'}}>
     <div className='relative  w-[95%]  md:w-[80%]  rounded-lg text-clamp-p '  >
         <div className=" w-full   mx-auto flex max-[500px]:flex-col-reverse dark:bg-slate-50">
-                <div className='relative sm:static max-[500px]:w-full w-[60%] bg-[#4242]  before:bg-cover before:bg-blend-darken before:bg-no-repeat before:absolute before:top-0 before:left-0 before:-z-10 before:h-full before:w-full  content-[""]  flex justify-center items-center' >
+                <div className='relative sm:static max-[500px]:w-full w-[60%]   before:bg-cover before:bg-blend-darken before:bg-no-repeat before:absolute before:top-0 before:left-0 before:-z-10 before:h-full before:w-full  content-[""]  flex justify-center items-center'  style={{backgroundColor:'#4242'}}>
                 <div className='min-w-[230px] max-w-90  w-[80%] lg:w-[60%] py-6 '>
                 <h1 className=' font-ChakraPetch text-[clamp(1.2rem,1.5vw,1.7rem)] font-bold text-center  mb-3'>Login to <span  className='text-[rgba(155,225,63,1)]'>Arevei</span> </h1>
                         <form >
@@ -35,8 +35,8 @@ export default function LogInPage() {
                         <div className="">
                                  <h3 className=' text-clamp-h5 text-center my-2 font-Poppins'>Sign In With </h3>
                                 <p className="flex w-full gap-1">
-                                        <strong className='p-2 flex justify-center items-center gap-3  border-2 w-full text-center bg-[#42424242]' ><AiFillGoogleCircle style={{color:'rgba(155,225,63,1)',fontSize:'25px'}}/> Google</strong>
-                                        <strong className='p-2 flex justify-center items-center gap-3 border-2 w-full text-center bg-[#42424242]'><FaFacebook style={{color:'rgba(155,225,63,1)',fontSize:'23px'}}/> Facebook</strong>
+                                        <strong className='p-2 flex justify-center items-center gap-3  border-2 w-full text-center '  style={{backgroundColor:'#42424242'}}><AiFillGoogleCircle style={{color:'rgba(155,225,63,1)',fontSize:'25px'}}/> Google</strong>
+                                        <strong className='p-2 flex justify-center items-center gap-3 border-2 w-full text-center ' style={{backgroundColor:'#42424242'}}><FaFacebook style={{color:'rgba(155,225,63,1)',fontSize:'23px'}}/> Facebook</strong>
                                 </p>
                         </div>
                         <div className='py-3 text-center whitespace-pre-line'><p className='whitespace-nowrap'>Don't have any account </p>
