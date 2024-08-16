@@ -9,6 +9,7 @@ import Homepage from './components/pages/homepage';
 import LogInPage from './components/pages/LoginPage';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import { useSelector } from 'react-redux';
+import Blogpage from './components/pages/Blogpage';
 
 function App() {
   const {auth} = useSelector(strore=>strore);
@@ -21,7 +22,7 @@ function App() {
         </div>}
     <Router>
     <Routes>
-    <Route path='/' element={<ProtectedRoute><Dashboard/></ProtectedRoute>}>
+    <Route path='/' element={<Dashboard/>}>
         <Route path='' element={<Homepage/>}/>
         <Route path='paymentInvoices' element={<ProjectSlotBooking/>}/>
         <Route path='subscription' element={<Subscription/>}/>
@@ -29,6 +30,7 @@ function App() {
     </Route>
     <Route path='/register' element={<SignUp/>}/>
     <Route path='/login' element={<LogInPage/>}/>
+    <Route path='/blog' element={<Blogpage/>}/>
     </Routes>
     </Router>
     </div>
