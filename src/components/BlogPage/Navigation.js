@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function BlogNavigation() {
   return (
-        <header className="  bg-[rgb(3,3,3)] shadowarevei sticky top-0 py-3 ">
+    <>
+        <header className="  bg-[rgb(3,3,3)] shadowarevei sticky top-0 z-50 py-3 ">
       <div className="relative flex  justify-between items-center   h-min w-[94%] md:w-[88%] lg:w-[84%] xl:w-[80%] mx-auto">
         <div className="  ">
           <img className=' h-6 ' src="img/Group.png" alt="" />
@@ -17,5 +18,6 @@ export default function BlogNavigation() {
       </div>
       </div>
     </header>
+    </>
   )
 }
