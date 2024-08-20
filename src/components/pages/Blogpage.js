@@ -5,7 +5,7 @@ import BlogContent from '../BlogPage/BlogContent'
 import CreateAccount from './CreateAccountOverlay';
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 
-export default function Blogpage() {
+export default function Blogpage({content}) {
   const [createAccOpen, setcreateAccOpen] = useState(false);
   
   const handleOpenAcc = () => setcreateAccOpen(true);

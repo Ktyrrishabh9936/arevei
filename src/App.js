@@ -10,6 +10,7 @@ import LogInPage from './components/pages/LoginPage';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import { useSelector } from 'react-redux';
 import Blogpage from './components/pages/Blogpage';
+import AddBlog from './components/pages/AddBlog';
 
 function App() {
   const {auth} = useSelector(strore=>strore);
@@ -31,6 +32,7 @@ function App() {
     <Route path='/register' element={<SignUp/>}/>
     <Route path='/login' element={<LogInPage/>}/>
     <Route path='/blog' element={<Blogpage/>}/>
+    <Route path='/blog/addPost' element={<AddBlog/>}/>
     </Routes>
     </Router>
     </div>

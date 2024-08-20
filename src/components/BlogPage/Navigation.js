@@ -6,7 +6,7 @@ export default function BlogNavigation() {
         <header className="  bg-[rgb(3,3,3)] shadowarevei sticky top-0 z-50 py-3 ">
       <div className="relative flex  justify-between items-center   h-min w-[94%] md:w-[88%] lg:w-[84%] xl:w-[80%] mx-auto">
         <div className="  ">
-          <img className=' h-6 ' src="img/Group.png" alt="" />
+          <img className=' h-6 ' src="/img/Group.png" alt="" />
         </div>
         <div className=" w-[30%]  flex  relative rounded-full">
                 <input type="text" className=' bg-[rgb(21,21,21)]   w-full pl-5 pr-[94px]  py-2 rounded-full text-white ' placeholder='Search' />
