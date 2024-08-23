@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import BlogNavigation from '../BlogPage/Navigation'
-import CTAbuttons from '../BlogPage/CTAbuttons'
-import BlogContent from '../BlogPage/BlogContent'
+import BlogNavigation from '../BlogViewPage/Navigation'
+import CTAbuttons from '../BlogViewPage/CTAbuttons'
+import BlogContent from '../BlogViewPage/BlogContent'
 import CreateAccount from './CreateAccountOverlay';
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 
-export default function Blogpage({content}) {
+export default function Blogpage() {
   const [createAccOpen, setcreateAccOpen] = useState(false);
   
   const handleOpenAcc = () => setcreateAccOpen(true);

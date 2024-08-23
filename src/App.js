@@ -9,8 +9,11 @@ import Homepage from './components/pages/homepage';
 import LogInPage from './components/pages/LoginPage';
 import ProtectedRoute from './components/utils/ProtectedRoute';
 import { useSelector } from 'react-redux';
-import Blogpage from './components/pages/Blogpage';
+import Blogpage from './components/pages/BlogViewpage';
 import AddBlog from './components/pages/AddBlog';
+import BlogDashboard from './components/Dashboard/blogDashBoard/Blogdashboard';
+import MyBlogpage from './components/pages/MyBlogpage';
+import BlogHome from './components/pages/Bloghome';
 
 function App() {
   const {auth} = useSelector(strore=>strore);
@@ -23,7 +26,7 @@ function App() {
         </div>}
     <Router>
     <Routes>
-    <Route path='/' element={<Dashboard/>}>
+    <Route path='/' element={<ProtectedRoute><Dashboard/></ProtectedRoute>}>
         <Route path='' element={<Homepage/>}/>
         <Route path='paymentInvoices' element={<ProjectSlotBooking/>}/>
         <Route path='subscription' element={<Subscription/>}/>
@@ -33,6 +36,10 @@ function App() {
     <Route path='/login' element={<LogInPage/>}/>
     <Route path='/blog' element={<Blogpage/>}/>
     <Route path='/blog/addPost' element={<AddBlog/>}/>
+    <Route path='/blog/dashboard' element={<ProtectedRoute><BlogDashboard/></ProtectedRoute>}>
+        <Route path='' element={<BlogHome/>}/>
+        <Route path='myblogs' element={<MyBlogpage/>}/>
+    </Route>
     </Routes>
     </Router>
     </div>

@@ -2,20 +2,25 @@
 import React, {useRef, useState } from 'react';
 import JoditEditor from 'jodit-react';
 import {Button,Typography,Box, Stepper, Step, StepLabel,} from '@mui/material';
-import BlogNavigation from '../BlogPage/Navigation';
-import BlogPost from '../BlogPage/BlogPost';
-import { useDispatch } from 'react-redux';
+import BlogNavigation from '../BlogViewPage/Navigation';
+import BlogPost from '../BlogViewPage/BlogPost';
+import { useDispatch, useSelector } from 'react-redux';
 import blogService from '../../Redux/RequestServices/blogService';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import Loader from 'react-spinner-loader';
+import CustomStepper from '../ProjectPage/projectStatus';
+import CreateBlogNavbar from '../BlogViewPage/createBlogNavbar';
 
 function getSteps() {
   return ['Title', 'Content', 'Review & Publish'];
 }
 
-function getStepContent(step,editor,handleBack,handleNext, formData,content,setContent,config, handleChange,handlePublish,File,setFile) {
+function getStepContent(step,editor,handleBack,handleNext, formData,content,setContent,config, handleChange,handlePublish,File,setFile,loader) {
   switch (step) {
     case 0:
       return (
-        <div className='flex flex-col items-center justify-center min-h-screen space-y-6'>
+        <div className='flex flex-col items-center justify-center  space-y-6'>
         <h1 className="text-3xl ">Enter the Headline</h1>
         <input
           type="text"
@@ -41,7 +46,7 @@ function getStepContent(step,editor,handleBack,handleNext, formData,content,setC
     case 1:
         
       return (
-        <div className=' min-h-screen flex flex-col gap-y-5 justify-center  items-center'>
+        <div className=' flex flex-col gap-y-5 justify-center  items-center'>
          <JoditEditor
 			ref={editor}
 			value={content}
@@ -62,10 +67,12 @@ function getStepContent(step,editor,handleBack,handleNext, formData,content,setC
       );
     case 2:
       return (
-        <div className='min-h-screen flex flex-col gap-y-5 justify-center  items-center '>
+        <div className=' flex flex-col gap-y-5 justify-center  items-center '>
         <Typography>
           <h1 className=' text-center text-3xl '>Preview your Post</h1>
          <BlogPost head={formData} content={content} File={File} setFile={setFile}/>
+      <Loader show = {loader} type="body"/>
+
         </Typography>
         <div className="flex gap-5">
         <button className="px-4 py-2 text-[rgba(155,225,63)] border-2 border-[rgba(155,225,63)] bg-black font-semibold rounded hover:text-white" onClick={handleBack}>
@@ -87,10 +94,9 @@ export default function AddBlog() {
   const [activeStep, setActiveStep] = useState(0);
   const editor = useRef(null);
   const dispatch = useDispatch();
+  const {blogReducer} = useSelector(store=>store)
+  const navigate = useNavigate();
   const [File, setFile] = useState(null);
-
-  
-
   const [content, setContent] = useState('');
   const [formData, setFormData] = useState({
     Heading: '',
@@ -103,7 +109,7 @@ export default function AddBlog() {
     data.append('subHeadline',formData.SubHeading);
     data.append('content',content);
     // {coverImage:File,headline:formData.Heading,subHeadline:formData.SubHeading,content:content}
-    dispatch(blogService.createBlog(data));
+    dispatch(blogService.createBlog(data,showAlert));
     // handleReset();
   }
   const config = {
@@ -118,46 +124,60 @@ export default function AddBlog() {
                                         backgroundColor:'#4a90e2',
                                 }
                         },
-                        height:600,
+                        height:400,
 			placeholder: 'Write Blog Content here....'
 		}
-
   const steps = getSteps();
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
-
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
-  const handleReset = () => {
+ const handleReset = () => {
     setActiveStep(0);
     setFormData({
         Heading: '',
         SubHeading: '',
     });
   };
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const showAlert = () => {
+    Swal.fire({
+      title: 'Success!',
+      text: 'Your action was successful.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+      customClass: {
+        popup: 'rounded-lg bg-gray-800 text-white', // Custom classes for styling
+        title: 'text-lime-500',
+        confirmButton: 'bg-lime-500 hover:bg-lime-400 text-black',
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/')
+      }
+    });
+  };
 
   return (
-        <>
-        <BlogNavigation/>
-        <div className="flex flex-col   justify-center min-h-screen bg-black text-white">
-                <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={activeStep} alternativeLabel>
+    <div className='bg-black min-h-screen'>
+        <CreateBlogNavbar/>
+        <div className=' min-h-[80vh]  flex justify-center items-center'>
+        <div className="  text-white py-6 my-auto w-full">
+                <Box sx={{ width: '100%',flexDirection:'column',display:'flex',justifyContent:'center',alignItems:'center'}}>
+      {/* <Stepper activeStep={activeStep} sx={{width:'80%'}} alternativeLabel>
         {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}
-      </Stepper>
-      <Box sx={{ mt: 2, mb: 1 }}>
-        {getStepContent(activeStep,editor,handleBack,handleNext,formData,content,setContent,config, handleChange,handlePublish,File,setFile)}
+      </Stepper> */}
+      <CustomStepper steps={steps} activeStep={activeStep}/>
+      <Box sx={{ mt: 2, mb: 1,width:'100%' }}>
+        {getStepContent(activeStep,editor,handleBack,handleNext,formData,content,setContent,config, handleChange,handlePublish,File,setFile,blogReducer.isLoading)}
       </Box>
       {activeStep === steps.length && (
         <Box sx={{ mt: 2 }}>
@@ -171,6 +191,7 @@ export default function AddBlog() {
         
       </div>
     
-    </>
+    </div>
+    </div>
   );
 }

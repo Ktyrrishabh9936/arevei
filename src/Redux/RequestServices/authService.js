@@ -34,7 +34,7 @@ const Login=(formdata)=>async(dispatch)=>{
 const getUser=()=>async(dispatch)=>{
         dispatch(getuserRequest());
         try {
-                const resp = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/profile`,{headers:{
+                const resp = await axios.get(`${process.env.REACT_APP_API_URL}/users/profile`,{headers:{
                         'authorization':`Bearer ${localStorage.getItem('jwt')}`,
                 
                 }});

@@ -23,7 +23,7 @@ const handleRemoveFile = () => {
   <div className=" mx-auto text-center">
         <div className="">
                 <div className="h-80 group relative" style={{background:`linear-gradient(transparent,black),url(${Avatar}) center center /cover no-repeat`}}>
-                <div className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-[opacity] duration-300 w-full h-full bg-[#2c496499]  flex space-x-4 z-10 text-white flex-col gap-2 justify-center items-center " >
+                <div className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-[opacity] duration-300 w-full h-full bg-[#2c496499]  flex space-x-4  text-white flex-col gap-2 justify-center items-center " >
                 <div className="relative flex flex-col items-center justify-center w-64 h-64 bg-black rounded-lg shadow-md">
       {!File ? (
         <label className="flex flex-col items-center justify-center w-full h-full cursor-pointer">

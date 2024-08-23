@@ -3,6 +3,17 @@ import Header from '../Dashboard/header';
 import CustomStepper, { ProjectStatus } from '../ProjectPage/projectStatus';
 
 const ProjectDashboard = () => {
+  const steps = [
+    'Payment Received',
+    'Project Manager Assigned',
+    'Project Brief and Research',
+    'Design and Prototype',
+    'Review',
+    'Reiteration',
+    '2nd Part Payment',
+    'Final Delivery',
+    'Feedback and Post Sales',
+  ];
   return (
         <>
         <Header/>
@@ -33,7 +44,7 @@ const ProjectDashboard = () => {
 
       <div className="w-full  mb-8">
         <h2 className="text-lg font-bold mb-4">Project Status</h2>
-        <CustomStepper/>
+        <CustomStepper steps={steps} activeStep={4}/>
         {/* <div className="flex flex-col md:flex-row items-center justify-between text-center text-sm space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex flex-col items-center">
             <span>8:00 PM, 28th July</span>

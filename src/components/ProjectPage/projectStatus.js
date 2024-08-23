@@ -6,19 +6,8 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepConnector from '@mui/material/StepConnector';
 import { styled } from '@mui/material/styles';
-import { StepIconProps } from '@mui/material/StepIcon';
 
-const steps = [
-  'Payment Received',
-  'Project Manager Assigned',
-  'Project Brief and Research',
-  'Design and Prototype',
-  'Review',
-  'Reiteration',
-  '2nd Part Payment',
-  'Final Delivery',
-  'Feedback and Post Sales',
-];
+
 
 const CustomStepIconRoot = styled('div')(({ theme, ownerState }) => ({
   color: 'black',
@@ -82,9 +71,9 @@ const CustomStepLabel = styled(StepLabel)({
   
 });
 
-const CustomStepper = () => {
+const CustomStepper = ({steps,activeStep}) => {
   return (
-    <Stepper alternativeLabel activeStep={3} connector={<CustomConnector />}>
+    <Stepper alternativeLabel activeStep={activeStep} connector={<CustomConnector />} sx={{width:'92%'}}>
       {steps.map((label) => (
         <Step key={label}>
           <CustomStepLabel StepIconComponent={CustomStepIcon} >{label}</CustomStepLabel>

@@ -4,7 +4,8 @@ import UserProfile from '../HomePage/userProfile'
 import ServiceCards from '../HomePage/ServiceCards'
 import authService from '../../Redux/RequestServices/authService';
 import { useDispatch, useSelector } from 'react-redux';
-export default function Homepage() {
+import BlogHeader from '../Dashboard/blogDashBoard/blogheader';
+export default function BlogHome() {
   const dispatch= useDispatch();
   const {auth} = useSelector(store=>store);
   const user = auth.user;
@@ -13,7 +14,7 @@ export default function Homepage() {
 },[user?.jwt])
   return (
     <>
-      <Header />
+      <BlogHeader />
 
       <div className="flex justify-center flex-col min-h-[calc(100vh-64px)]">
         <section className=" space-y-10 text-center my-8 py-8">
