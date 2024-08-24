@@ -34,8 +34,8 @@ function App() {
     </Route>
     <Route path='/register' element={<SignUp/>}/>
     <Route path='/login' element={<LogInPage/>}/>
-    <Route path='/blog' element={<Blogpage/>}/>
-    <Route path='/blog/addPost' element={<AddBlog/>}/>
+    <Route path='/blog/:id' element={<Blogpage/>}/>
+    <Route path='/blog/addPost' element={<ProtectedRoute><AddBlog/></ProtectedRoute>}/>
     <Route path='/blog/dashboard' element={<ProtectedRoute><BlogDashboard/></ProtectedRoute>}>
         <Route path='' element={<BlogHome/>}/>
         <Route path='myblogs' element={<MyBlogpage/>}/>

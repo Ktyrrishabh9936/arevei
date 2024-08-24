@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const BlogHeader = () => {
@@ -13,7 +14,7 @@ const BlogHeader = () => {
         </div>
         <div className="absolute right-6 top-3 space-x-3">
         
-      <button type='button' className="bg-[rgba(155,225,63)] text-black px-4 py-2 rounded whitespace-nowrap self-end w-max ">Write</button>
+      <Link to='/blog/addPost' className="bg-[rgba(155,225,63)] text-black px-4 py-2 rounded whitespace-nowrap self-end w-max ">Write</Link>
       </div>
       </div>
     </header>

@@ -4,10 +4,16 @@ import CTAbuttons from '../BlogViewPage/CTAbuttons'
 import BlogContent from '../BlogViewPage/BlogContent'
 import CreateAccount from './CreateAccountOverlay';
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import blogService from '../../Redux/RequestServices/blogService';
 
 export default function Blogpage() {
   const [createAccOpen, setcreateAccOpen] = useState(false);
-  
+  const params = useParams();
+  const dispatch = useDispatch();
+  const {blogReducer} = useSelector(store=>store);
+  const Blogdata = blogReducer.blog;
   const handleOpenAcc = () => setcreateAccOpen(true);
   const handleCloseAcc = () => setcreateAccOpen(false);
 
@@ -19,6 +25,9 @@ export default function Blogpage() {
       clearTimeout();
     }
   },[])
+  useEffect(()=>{
+    dispatch(blogService.findBlogs(params.id))
+},[params.id])
   return (
     <>
     <CreateAccount open={createAccOpen} handleClose={handleCloseAcc}/>
@@ -29,7 +38,7 @@ export default function Blogpage() {
       <div className=" text-white  ">
   <div className=" mx-auto text-center">
         <div className="">
-                <div className="h-80 " style={{background:`linear-gradient(transparent,black),url(${window.location.origin}/img/coverimage.jpeg) center center /cover no-repeat`}}>
+                <div className="h-80 " style={{background:`linear-gradient(transparent,black),url(${(Blogdata?.coverImage||`${window.location.origin}/img/coverimage.jpeg`)}) center center /cover no-repeat`}}>
                         {/* <img src="/img/coverimage.jpeg" className=' bg-cover bg-center' alt="" /> */}
                 </div>
                 <div className=" relative rounded-full ">
@@ -38,20 +47,22 @@ export default function Blogpage() {
         </div>
         <CTAbuttons/>
     <h1 className="text-[clamp(2.3rem,2.7vw,3rem)]  font-bold my-4 ">
-      Some bite-sized tips and tricks for improving website design.
+      {blogReducer.blog?.headline}
     </h1>
     <p className=" mb-8 text-[rgb(130,130,130)] " >
-      At Arevei, we prioritize clarity, providing straightforward pricing with no hidden fees or surprises.
+    {blogReducer.blog?.subHeadline}
     </p>
     
   </div>
 </div>
-<BlogContent/>
+{/* <BlogContent/>
 <div className="w-[70%] mx-auto overflow-hidden my-8" >
         <img src="/img/conimage.jpeg" className='bg-cover bg-center' alt="" />
 </div>
 <BlogContent/>
-<CTAbuttons/>
+<CTAbuttons/> */}
+<div className="w-[90%] mx-auto text-white" dangerouslySetInnerHTML={{__html:blogReducer.blog?.content}}>
+</div>
 </div>
 
 <div className=" text-white w-[94%] md:w-[88%] lg:w-[84%] xl:w-[80%] mx-auto py-16">

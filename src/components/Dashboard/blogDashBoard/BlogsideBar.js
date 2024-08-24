@@ -2,7 +2,7 @@ import React from 'react';
 import { HiOutlinePaintBrush } from 'react-icons/hi2';
 import { IoHomeOutline, IoMailUnreadOutline } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineDesignServices, MdOutlinePersonPin } from 'react-icons/md';
 import { logout } from '../../../Redux/slices/authSlice';
 
@@ -17,11 +17,11 @@ const BlogSidebar = () => {
       <nav className="space-y-6 h-full flex justify-center flex-col">
         <a href="/" className="flex items-center text-black">
         <IoHomeOutline/>
-          <span className="ml-2">Home</span>
+          <Link to='' className="ml-2">Home</Link>
         </a>
         <a href="/" className="flex items-center text-black">
       <MdOutlineDesignServices/>
-          <span className="ml-2">My Blog</span>
+          <Link to="myblogs" className="ml-2">My Blog</Link>
         </a>
         <a href="/" className="flex items-center text-black">
       <IoMailUnreadOutline/>

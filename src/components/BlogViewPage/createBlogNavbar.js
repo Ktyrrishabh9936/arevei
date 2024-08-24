@@ -11,11 +11,11 @@ export default function CreateBlogNavbar() {
           <img className=' h-6 ' src="/img/Group.png" alt="" />
         </div>
         <div className="flex justify-center items-center gap-5">
-        <Link to='/' className=" space-x-3 text-white  py-2 flex">
+        <Link to='/blog/dashboard' className=" space-x-3 text-white  py-2 flex">
         <BiLogOut fontSize={21} />
         <button className='    rounded whitespace-nowrap self-end w-max h-min' >Back to Dashboard</button>
       </Link>
-      <p className='text-[rgba(86,206,226,1)]'>Blogs</p>
+      <Link to='/blogs' className='text-[rgba(86,206,226,1)]'>Blogs</Link>
       <div className=" bg-white h-10 w-10 rounded-full"></div>
       </div>
       </div>
