@@ -1,6 +1,10 @@
 import React from 'react'
+import { ProtectWriteButton } from '../utils/Protection'
+import { useNavigate } from 'react-router-dom';
 
 export default function BlogNavigation() {
+  const navigate = useNavigate();
+
   return (
     <>
         <header className="  bg-[rgb(3,3,3)] shadowarevei sticky top-0 z-50 py-3 ">
@@ -13,7 +17,7 @@ export default function BlogNavigation() {
                 <button className=' text-gray-600 px-3 w-min absolute right-2 h-full border-l-2 border-gray-900'>cmd+k</button>
         </div>
         <div className=" space-x-3">
-        <button className=' border-2 border-blue-300 text-white px-4 py-2 rounded whitespace-nowrap self-end w-max' >Write</button>
+        <ProtectWriteButton onClick={()=>navigate('/blog/addPost')}  className=' border-2 border-blue-300 text-white px-4 py-2 rounded whitespace-nowrap self-end w-max' >Write</ProtectWriteButton>
       <button type='button' className="bg-[rgba(155,225,63)] text-black px-4 py-2 rounded whitespace-nowrap self-end w-max ">Schedule a Meeting</button>
       </div>
       </div>

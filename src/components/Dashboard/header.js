@@ -44,7 +44,6 @@ const Header = () => {
         <div className="absolute right-6 top-3 space-x-3">
         <button className='bg-[#9baba7] text-black px-4 py-2 rounded whitespace-nowrap self-end w-max' onClick={()=>{
           dispatch(logout());
-          navigate('/login');
         }}>Logout</button>
       <button type='button' className="bg-[rgba(155,225,63)] text-black px-4 py-2 rounded whitespace-nowrap self-end w-max ">Book a Service Now</button>
       </div>

@@ -8,7 +8,6 @@ import { logout } from '../../../Redux/slices/authSlice';
 
 const BlogSidebar = () => {
         const dispatch = useDispatch();
-  const navigate = useNavigate();
   return (
     <aside className="w-1/5 bg-[rgb(171,171,171)] flex flex-col items-center py-6 gap-y-8 h-screen sticky top-0">
       <div className="mb-8  flex items-center pt-16 max-h-[40%]">
@@ -41,7 +40,6 @@ const BlogSidebar = () => {
       </nav>
       <button className='bg-[rgba(155,225,63)] text-black px-4 py-2 rounded whitespace-nowrap w-max' onClick={()=>{
           dispatch(logout());
-          navigate('/login');
         }}>Sign Out</button>
     </aside>
   );

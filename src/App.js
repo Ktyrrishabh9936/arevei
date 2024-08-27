@@ -7,13 +7,14 @@ import Subscription from './components/pages/SubscriptionPage';
 import ProjectDashboard from './components/pages/projectsPage';
 import Homepage from './components/pages/homepage';
 import LogInPage from './components/pages/LoginPage';
-import ProtectedRoute from './components/utils/ProtectedRoute';
+import {ProtectedRoute} from './components/utils/Protection';
 import { useSelector } from 'react-redux';
 import Blogpage from './components/pages/BlogViewpage';
 import AddBlog from './components/pages/AddBlog';
 import BlogDashboard from './components/Dashboard/blogDashBoard/Blogdashboard';
 import MyBlogpage from './components/pages/MyBlogpage';
 import BlogHome from './components/pages/Bloghome';
+import Blogs from './components/pages/Blogs';
 
 function App() {
   const {auth} = useSelector(strore=>strore);
@@ -35,6 +36,7 @@ function App() {
     <Route path='/register' element={<SignUp/>}/>
     <Route path='/login' element={<LogInPage/>}/>
     <Route path='/blog/:id' element={<Blogpage/>}/>
+    <Route path='/blog' element={<Blogs/>}/>
     <Route path='/blog/addPost' element={<ProtectedRoute><AddBlog/></ProtectedRoute>}/>
     <Route path='/blog/dashboard' element={<ProtectedRoute><BlogDashboard/></ProtectedRoute>}>
         <Route path='' element={<BlogHome/>}/>

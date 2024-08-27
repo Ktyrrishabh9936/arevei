@@ -1,17 +1,15 @@
 
 import React, {useRef, useState } from 'react';
 import JoditEditor from 'jodit-react';
-import {Button,Typography,Box, Stepper, Step, StepLabel,} from '@mui/material';
-import BlogNavigation from '../BlogViewPage/Navigation';
+import {Button,Typography,Box} from '@mui/material';
 import BlogPost from '../BlogViewPage/BlogPost';
 import { useDispatch, useSelector } from 'react-redux';
 import blogService from '../../Redux/RequestServices/blogService';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 import Loader from 'react-spinner-loader';
 import CustomStepper from '../ProjectPage/projectStatus';
 import CreateBlogNavbar from '../BlogViewPage/createBlogNavbar';
-
+import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
 function getSteps() {
   return ['Title', 'Content', 'Review & Publish'];
 }
@@ -95,13 +93,43 @@ export default function AddBlog() {
   const editor = useRef(null);
   const dispatch = useDispatch();
   const {blogReducer} = useSelector(store=>store)
-  const navigate = useNavigate();
   const [File, setFile] = useState(null);
   const [content, setContent] = useState('');
   const [formData, setFormData] = useState({
     Heading: '',
     SubHeading: '',
   });
+  const navigate = useNavigate();
+    const showAlert = () => {
+                Swal.fire({
+                  title: 'Success!',
+                  text: 'Your action was successful.',
+                  icon: 'success',
+                  confirmButtonText: 'OK',
+                  customClass: {
+                    popup: 'rounded-lg bg-gray-800 text-white', // Custom classes for styling
+                    title: 'text-lime-500',
+                    confirmButton: 'bg-lime-500 hover:bg-lime-400 text-black',
+                  },
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    navigate('/')
+                  }
+                });
+              };
+    const errorAlert = ()=>{
+                Swal.fire({
+                        title: 'Oops ! :)',
+                        text: ' Something went wrong ',
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        customClass: {
+                          popup: 'rounded-lg bg-gray-800 text-white',
+                          title: 'text-lime-500',
+                          confirmButton: 'bg-lime-500 hover:bg-lime-400 text-black',
+                        },
+                      });
+        }
   const handlePublish=()=>{
     const data = new FormData();
     data.append('coverImage',File);
@@ -109,7 +137,7 @@ export default function AddBlog() {
     data.append('subHeadline',formData.SubHeading);
     data.append('content',content);
     // {coverImage:File,headline:formData.Heading,subHeadline:formData.SubHeading,content:content}
-    dispatch(blogService.createBlog(data,showAlert));
+    dispatch(blogService.createBlog(data,showAlert,errorAlert));
     // handleReset();
   }
   const config = {
@@ -144,23 +172,7 @@ export default function AddBlog() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const showAlert = () => {
-    Swal.fire({
-      title: 'Success!',
-      text: 'Your action was successful.',
-      icon: 'success',
-      confirmButtonText: 'OK',
-      customClass: {
-        popup: 'rounded-lg bg-gray-800 text-white', // Custom classes for styling
-        title: 'text-lime-500',
-        confirmButton: 'bg-lime-500 hover:bg-lime-400 text-black',
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate('/')
-      }
-    });
-  };
+ 
 
   return (
     <div className='bg-black min-h-screen'>
@@ -168,13 +180,7 @@ export default function AddBlog() {
         <div className=' min-h-[80vh]  flex justify-center items-center'>
         <div className="  text-white py-6 my-auto w-full">
                 <Box sx={{ width: '100%',flexDirection:'column',display:'flex',justifyContent:'center',alignItems:'center'}}>
-      {/* <Stepper activeStep={activeStep} sx={{width:'80%'}} alternativeLabel>
-        {steps.map((label, index) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper> */}
+
       <CustomStepper steps={steps} activeStep={activeStep}/>
       <Box sx={{ mt: 2, mb: 1,width:'100%' }}>
         {getStepContent(activeStep,editor,handleBack,handleNext,formData,content,setContent,config, handleChange,handlePublish,File,setFile,blogReducer.isLoading)}

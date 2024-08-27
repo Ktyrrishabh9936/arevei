@@ -8,7 +8,6 @@ const Register=(formdata)=>async(dispatch)=>{
                 const resp = await api.post('/auth/signup',formdata.RegisterData);
                 const user = resp.data;
                 console.log(user)
-                formdata.navigate('/login')
                 dispatch(registerSuccess())
         } catch (error) {
                 console.log(error)
@@ -24,7 +23,6 @@ const Login=(formdata)=>async(dispatch)=>{
                 if(user.jwt){
                         dispatch(loginSuccess(user.jwt));
                                 localStorage.setItem('jwt',user.jwt);
-                                formdata.navigate('/')
                 }
         } catch (error) {
                 console.log(error)

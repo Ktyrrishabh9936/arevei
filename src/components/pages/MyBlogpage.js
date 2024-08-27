@@ -3,9 +3,11 @@ import BlogHeader from '../Dashboard/blogDashBoard/blogheader';
 import { HiOutlinePaintBrush } from 'react-icons/hi2';
 import { useDispatch, useSelector } from 'react-redux';
 import blogService from '../../Redux/RequestServices/blogService';
+import { useNavigate } from 'react-router-dom';
 export default function MyBlogpage() {
   const {blogReducer} = useSelector(store=>store);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(()=>{
     dispatch(blogService.getMyBlogs())
   },[])
@@ -15,7 +17,7 @@ export default function MyBlogpage() {
         <div className="max-w-4xl mx-auto  text-white mt-10 mb-7">
           {/* Repeat this block for each item */}
           {blogReducer.myblog?.map((blog, index) => (
-            <div key={index} className=" group flex items-center justify-between py-4 border-b border-[rgb(19,19,19)] hover:bg-[#424242] px-5 rounded-md">
+            <div key={index} className=" group flex items-center justify-between py-4 border-b border-[rgb(19,19,19)] hover:bg-[#424242] px-5 rounded-md" onClick={()=>navigate(`/blog/${blog._id}`)}>
               <div className="flex items-center">
                 <HiOutlinePaintBrush className="text-lime-500 mr-2" fontSize={20} />
                 <p className="text-gray-300 group-hover:text-[rgb(155,225,63)] cursor-pointer">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import BlogNavigation from '../BlogViewPage/Navigation'
 import CTAbuttons from '../BlogViewPage/CTAbuttons'
 import BlogContent from '../BlogViewPage/BlogContent'
-import CreateAccount from './CreateAccountOverlay';
+import CreateAccount, { CreateAccountOverlay } from './CreateAccount';
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,7 +30,7 @@ export default function Blogpage() {
 },[params.id])
   return (
     <>
-    <CreateAccount open={createAccOpen} handleClose={handleCloseAcc}/>
+    <CreateAccountOverlay open={createAccOpen} handleClose={handleCloseAcc}/>
     
         <div className=' bg-[rgb(3,3,3)]'>
     <BlogNavigation />
@@ -45,7 +45,7 @@ export default function Blogpage() {
                         <img src="/img/profile.png" className='h-32 mx-auto rounded-full' alt="" />
                 </div>
         </div>
-        <CTAbuttons/>
+        <CTAbuttons username={`${Blogdata?.user?.firstName} ${Blogdata?.user?.lastName}`}/>
     <h1 className="text-[clamp(2.3rem,2.7vw,3rem)]  font-bold my-4 ">
       {blogReducer.blog?.headline}
     </h1>
